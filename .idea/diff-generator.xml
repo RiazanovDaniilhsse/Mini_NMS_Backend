@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="snapshotDb" value="false" />
+    <option name="snapshotModelValue" value="nmsBack:nmsBack" />
+    <option name="sourceModelValue" value="nmsBack:nmsBack" />
+    <option name="targetDbValue" value="01c3730f-8c6f-4d71-9f3d-3301cb58f423" />
+  </component>
+</project>
