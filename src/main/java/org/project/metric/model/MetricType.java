@@ -22,4 +22,6 @@ public class MetricType {
 
   @Enumerated(EnumType.STRING)
   private ValueType valueType;
+  @Column(name = "poll_interval_sec", nullable = false)
+  private Integer pollIntervalSec = 30;
 }

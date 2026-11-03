@@ -13,6 +13,7 @@ public class MetricTypeMapper {
     entity.setName(dto.getName());
     entity.setUnit(dto.getUnit());
     entity.setValueType(dto.getValueType());
+    entity.setPollIntervalSec(dto.getPollIntervalSec());
     return entity;
   }
 
@@ -23,6 +24,7 @@ public class MetricTypeMapper {
     dto.setName(entity.getName());
     dto.setUnit(entity.getUnit());
     dto.setValueType(entity.getValueType());
+    dto.setPollIntervalSec(entity.getPollIntervalSec());
     return dto;
   }
 }

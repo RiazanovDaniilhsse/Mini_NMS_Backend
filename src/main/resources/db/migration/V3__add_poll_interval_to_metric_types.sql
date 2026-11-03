@@ -1,0 +1,1 @@
+ALTER TABLE metric_types ADD COLUMN poll_interval_sec INTEGER NOT NULL DEFAULT 30;

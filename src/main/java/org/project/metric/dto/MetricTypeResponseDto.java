@@ -10,4 +10,5 @@ public class MetricTypeResponseDto {
   private String name;
   private String unit;
   private ValueType valueType;
+  private Integer pollIntervalSec;
 }

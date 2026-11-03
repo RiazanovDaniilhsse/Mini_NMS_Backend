@@ -1,4 +1,4 @@
-package org.project.catalog.service;
+package org.project.catalog.repository;
 
 import org.junit.jupiter.api.Test;
 import org.project.catalog.model.Site;

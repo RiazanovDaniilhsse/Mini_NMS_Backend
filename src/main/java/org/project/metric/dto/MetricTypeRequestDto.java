@@ -7,6 +7,7 @@ import org.project.enums.ValueType;
 
 @Data
 public class MetricTypeRequestDto {
+
   @NotBlank(message = "Код метрики обязателен")
   private String code;
 
@@ -17,4 +18,6 @@ public class MetricTypeRequestDto {
 
   @NotNull(message = "Тип значения обязателен")
   private ValueType valueType;
+
+  Integer pollIntervalSec;
 }
