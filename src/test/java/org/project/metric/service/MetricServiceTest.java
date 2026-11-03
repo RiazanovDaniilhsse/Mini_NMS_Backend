@@ -12,7 +12,7 @@ import java.util.Optional;
 import org.project.catalog.model.Device;
 import org.project.catalog.repository.DeviceRepository;
 import org.project.enums.ValueType;
-import org.project.metric.dto.MetricEventDto;
+import org.project.metric.dto.event.NumericMetricEventDto;
 import org.project.metric.model.MetricBooleanValue;
 import org.project.metric.model.MetricNumericValue;
 import org.project.metric.model.MetricType;
@@ -41,7 +41,7 @@ class MetricServiceTest {
   @Test
   void saveFromEvent_ShouldSaveToNumericRepository_WhenValueTypeIsNumber() {
     // Given
-    MetricEventDto event = new MetricEventDto();
+    NumericMetricEventDto event = new NumericMetricEventDto();
     event.setDeviceId(1L);
     event.setMetricTypeCode("CPU_LOAD");
     event.setValue(new BigDecimal("85.5"));
@@ -66,7 +66,7 @@ class MetricServiceTest {
   @Test
   void saveFromEvent_ShouldSaveToBooleanRepository_WhenValueTypeIsBoolean() {
     // Given
-    MetricEventDto event = new MetricEventDto();
+    NumericMetricEventDto event = new NumericMetricEventDto();
     event.setDeviceId(1L);
     event.setMetricTypeCode("DOOR_OPEN");
     event.setBooleanValue(true);
