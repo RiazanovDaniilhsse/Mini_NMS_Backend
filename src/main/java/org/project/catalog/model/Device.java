@@ -1,6 +1,8 @@
 package org.project.catalog.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 
 @Entity
@@ -21,4 +23,6 @@ public class Device {
   @ManyToOne(optional = false)
   @JoinColumn(name = "device_type_id")
   private DeviceType deviceType;
+
+  private Integer port;
 }
