@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 @Table(name = "devices")
 public class Device {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -23,6 +24,9 @@ public class Device {
   @ManyToOne(optional = false)
   @JoinColumn(name = "device_type_id")
   private DeviceType deviceType;
+
+  @Column(nullable = false)
+  private Boolean enabled = true;
 
   private Integer port;
 }

@@ -13,6 +13,7 @@ public class DeviceMapper {
     entity.setName(dto.getName());
     entity.setIpAddress(dto.getIpAddress());
     entity.setPort(dto.getPort());
+    entity.setEnabled(dto.getEnabled() != null ? dto.getEnabled() : true);
     return entity;
   }
 
@@ -22,6 +23,7 @@ public class DeviceMapper {
     dto.setName(entity.getName());
     dto.setIpAddress(entity.getIpAddress());
     dto.setPort(entity.getPort());
+    dto.setEnabled(entity.getEnabled());
     if (entity.getSite() != null) {
       dto.setSiteId(entity.getSite().getId());
       dto.setSiteName(entity.getSite().getName());

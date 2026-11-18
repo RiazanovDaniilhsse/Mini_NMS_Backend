@@ -22,4 +22,5 @@ public class DeviceRequestDto {
   @Min(value = 1, message = "Порт должен быть от 1 до 65535")
   @Max(value = 65535, message = "Порт должен быть от 1 до 65535")
   private Integer port;
+  private Boolean enabled = true;
 }

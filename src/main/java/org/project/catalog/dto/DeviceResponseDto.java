@@ -12,4 +12,5 @@ public class DeviceResponseDto {
   private Long deviceTypeId;
   private String deviceTypeName;
   private Integer port;
+  private Boolean enabled = true;
 }
