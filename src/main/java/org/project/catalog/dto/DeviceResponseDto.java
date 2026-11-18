@@ -11,4 +11,6 @@ public class DeviceResponseDto {
   private String siteName; // Для удобства фронтенда
   private Long deviceTypeId;
   private String deviceTypeName;
+  private Integer port;
+  private Boolean enabled = true;
 }
