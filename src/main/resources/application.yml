@@ -9,7 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -21,6 +21,10 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
+        spring.json.use.type.headers: true
         spring.json.trusted.packages: "*"
-        spring.json.use.type.headers: false
-        spring.json.value.default.type: org.project.metric.dto.event.MetricEventDto
+        spring.json.type.mapping: >
+          com.nms.poller.kafka.DoubleMetricEvent:org.project.metric.dto.event.NumericMetricEventDto,
+          com.nms.poller.kafka.BooleanMetricEvent:org.project.metric.dto.event.BooleanMetricEventDto,
+          com.nms.poller.kafka.StringMetricEvent:org.project.metric.dto.event.StringMetricEventDto,
+          com.nms.poller.kafka.DeviceTimeoutEvent:org.project.metric.dto.event.TimeoutMetricEventDto

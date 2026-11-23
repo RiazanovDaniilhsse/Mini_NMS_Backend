@@ -11,4 +11,7 @@ public class DeviceResponseDto {
   private String siteName; // Для удобства фронтенда
   private Long deviceTypeId;
   private String deviceTypeName;
+  private Boolean enabled = true;
+  private Integer snmpPort;
+  private String community;
 }

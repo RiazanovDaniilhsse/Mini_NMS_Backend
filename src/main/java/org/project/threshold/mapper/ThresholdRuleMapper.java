@@ -11,7 +11,9 @@ public class ThresholdRuleMapper {
   public ThresholdRule toEntity(ThresholdRuleRequestDto dto) {
     ThresholdRule entity = new ThresholdRule();
     entity.setComparator(dto.getComparator());
-    entity.setThresholdValue(dto.getThresholdValue());
+    entity.setNumericValue(dto.getNumericValue());
+    entity.setBooleanValue(dto.getBooleanValue());
+    entity.setStringValues(dto.getStringValues());
     entity.setDurationSec(dto.getDurationSec());
     entity.setSeverity(dto.getSeverity());
     entity.setEnabled(dto.getEnabled());
@@ -22,7 +24,9 @@ public class ThresholdRuleMapper {
     ThresholdRuleResponseDto dto = new ThresholdRuleResponseDto();
     dto.setId(entity.getId());
     dto.setComparator(entity.getComparator());
-    dto.setThresholdValue(entity.getThresholdValue());
+    dto.setNumericValue(entity.getNumericValue());
+    dto.setBooleanValue(entity.getBooleanValue());
+    dto.setStringValues(entity.getStringValues());
     dto.setDurationSec(entity.getDurationSec());
     dto.setSeverity(entity.getSeverity());
     dto.setEnabled(entity.getEnabled());

@@ -9,14 +9,18 @@ import org.project.exception.exceptions.ResourceNotFoundException;
 import org.project.metric.dto.event.BooleanMetricEventDto;
 import org.project.metric.dto.event.NumericMetricEventDto;
 import org.project.metric.dto.event.StringMetricEventDto;
+import org.project.metric.dto.event.TimeoutMetricEventDto;
+import org.project.metric.model.DeviceTimeout;
 import org.project.metric.model.MetricBooleanValue;
 import org.project.metric.model.MetricNumericValue;
 import org.project.metric.model.MetricStringValue;
 import org.project.metric.model.MetricType;
+import org.project.metric.repository.DeviceTimeoutRepository;
 import org.project.metric.repository.MetricBooleanValueRepository;
 import org.project.metric.repository.MetricNumericValueRepository;
 import org.project.metric.repository.MetricStringValueRepository;
 import org.project.metric.repository.MetricTypeRepository;
+import org.project.threshold.service.ThresholdEngineService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +34,8 @@ public class MetricService {
   private final MetricStringValueRepository stringRepository;
   private final DeviceRepository deviceRepository;
   private final MetricTypeRepository metricTypeRepository;
+  private final DeviceTimeoutRepository timeoutRepository;
+  private final ThresholdEngineService thresholdEngine;
 
   public void saveNumeric(NumericMetricEventDto event) {
     Device device = findDevice(event.getDeviceId());
@@ -49,6 +55,7 @@ public class MetricService {
       log.warn("Duplicate numeric metric ignored: device={}, metric={}", event.getDeviceId(),
               event.getMetricTypeCode());
     }
+    thresholdEngine.evaluate(device, metricType, event.getValue(), null, null);
   }
 
   public void saveBoolean(BooleanMetricEventDto event) {
@@ -69,6 +76,7 @@ public class MetricService {
       log.warn("Duplicate boolean metric ignored: device={}, metric={}", event.getDeviceId(),
               event.getMetricTypeCode());
     }
+    thresholdEngine.evaluate(device, metricType, null, event.getValue(), null);
   }
 
   public void saveString(StringMetricEventDto event) {
@@ -88,6 +96,20 @@ public class MetricService {
     } catch (DataIntegrityViolationException e) {
       log.warn("Duplicate string metric ignored: device={}, metric={}", event.getDeviceId(),
               event.getMetricTypeCode());
+    }
+    thresholdEngine.evaluate(device, metricType, null, null, event.getValue());
+  }
+
+  public void saveTimeout(TimeoutMetricEventDto event) {
+    Device device = findDevice(event.getDeviceId());
+    try {
+      DeviceTimeout timeout = new DeviceTimeout();
+      timeout.setDevice(device);
+      timeout.setTimestamp(event.getTimestamp());
+      timeoutRepository.save(timeout);
+      log.warn("Device {} is TIMEOUT at {}", event.getDeviceId(), event.getTimestamp());
+    } catch (DataIntegrityViolationException e) {
+      log.warn("Duplicate timeout ignored for device {}", event.getDeviceId());
     }
   }
 

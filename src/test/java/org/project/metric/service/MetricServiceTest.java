@@ -12,6 +12,7 @@ import java.util.Optional;
 import org.project.catalog.model.Device;
 import org.project.catalog.repository.DeviceRepository;
 import org.project.enums.ValueType;
+import org.project.metric.dto.event.BooleanMetricEventDto;
 import org.project.metric.dto.event.NumericMetricEventDto;
 import org.project.metric.model.MetricBooleanValue;
 import org.project.metric.model.MetricNumericValue;
@@ -56,7 +57,7 @@ class MetricServiceTest {
     when(metricTypeRepository.findByCode("CPU_LOAD")).thenReturn(Optional.of(metricType));
 
     // When
-    metricService.saveFromEvent(event);
+    metricService.saveNumeric(event);
 
     // Then
     verify(numericRepository, times(1)).save(any(MetricNumericValue.class));
@@ -66,10 +67,10 @@ class MetricServiceTest {
   @Test
   void saveFromEvent_ShouldSaveToBooleanRepository_WhenValueTypeIsBoolean() {
     // Given
-    NumericMetricEventDto event = new NumericMetricEventDto();
+    BooleanMetricEventDto event = new BooleanMetricEventDto();
     event.setDeviceId(1L);
     event.setMetricTypeCode("DOOR_OPEN");
-    event.setBooleanValue(true);
+    event.setValue(true);
     event.setTimestamp(ZonedDateTime.now());
     event.setPollStatus("SUCCESS");
 
@@ -81,7 +82,7 @@ class MetricServiceTest {
     when(metricTypeRepository.findByCode("DOOR_OPEN")).thenReturn(Optional.of(metricType));
 
     // When
-    metricService.saveFromEvent(event);
+    metricService.saveBoolean(event);
 
     // Then
     verify(booleanRepository, times(1)).save(any(MetricBooleanValue.class));

@@ -2,6 +2,7 @@ package org.project.threshold.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import lombok.Data;
 import org.project.enums.Operator;
 import org.project.enums.Severity;
@@ -22,8 +23,11 @@ public class ThresholdRuleRequestDto {
   @NotNull(message = "Оператор сравнения обязателен")
   private Operator comparator;
 
-  @NotNull(message = "Значение порога обязательно")
-  private BigDecimal thresholdValue; // Убрали @Positive, чтобы можно было ставить 0
+  private BigDecimal numericValue;
+
+  private Boolean booleanValue;
+
+  private List<String> stringValues;
 
   @Min(value = 0, message = "Длительность не может быть отрицательной")
   private Integer durationSec = 0;

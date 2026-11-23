@@ -1,5 +1,6 @@
 package org.project.threshold.dto;
 
+import java.util.List;
 import lombok.Data;
 import org.project.enums.Operator;
 import org.project.enums.Severity;
@@ -15,7 +16,9 @@ public class ThresholdRuleResponseDto {
   private String metricTypeName;
   private Long deviceId;
   private Operator comparator;
-  private BigDecimal thresholdValue;
+  private BigDecimal numericValue;
+  private Boolean booleanValue;
+  private List<String> stringValues;
   private Integer durationSec;
   private Severity severity;
   private Boolean enabled;

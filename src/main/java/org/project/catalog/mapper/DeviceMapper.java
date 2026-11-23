@@ -12,6 +12,9 @@ public class DeviceMapper {
     Device entity = new Device();
     entity.setName(dto.getName());
     entity.setIpAddress(dto.getIpAddress());
+    entity.setSnmpPort(dto.getSnmpPort());
+    entity.setCommunity(dto.getCommunity() != null ? dto.getCommunity() : "public");
+    entity.setEnabled(dto.getEnabled() != null ? dto.getEnabled() : true);
     return entity;
   }
 
@@ -20,12 +23,13 @@ public class DeviceMapper {
     dto.setId(entity.getId());
     dto.setName(entity.getName());
     dto.setIpAddress(entity.getIpAddress());
-
+    dto.setSnmpPort(entity.getSnmpPort());
+    entity.setCommunity(dto.getCommunity());
+    dto.setEnabled(entity.getEnabled());
     if (entity.getSite() != null) {
       dto.setSiteId(entity.getSite().getId());
       dto.setSiteName(entity.getSite().getName());
     }
-
     if (entity.getDeviceType() != null) {
       dto.setDeviceTypeId(entity.getDeviceType().getId());
       dto.setDeviceTypeName(entity.getDeviceType().getName());
