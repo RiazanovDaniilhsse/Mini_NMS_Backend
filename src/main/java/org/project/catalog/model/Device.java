@@ -28,5 +28,9 @@ public class Device {
   @Column(nullable = false)
   private Boolean enabled = true;
 
-  private Integer port;
+  @Column(name = "snmp_port")
+  private Integer snmpPort;
+
+  @Column(name = "community")
+  private String community = "public";
 }

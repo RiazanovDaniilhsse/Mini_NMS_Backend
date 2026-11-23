@@ -1,0 +1,1 @@
+ALTER TABLE threshold_rules ALTER COLUMN string_values TYPE VARCHAR(255)[] USING NULL;

@@ -3,6 +3,7 @@ package org.project.threshold.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import lombok.Data;
 import org.project.catalog.model.Device;
 import org.project.catalog.model.DeviceType;
@@ -15,6 +16,7 @@ import org.project.metric.model.MetricType;
 @Data
 @Table(name = "threshold_rules")
 public class ThresholdRule {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -34,8 +36,14 @@ public class ThresholdRule {
   @Enumerated(EnumType.STRING)
   private Operator comparator;
 
-  @Column(name = "threshold_value")
-  private BigDecimal thresholdValue;
+  @Column(name = "numeric_value")
+  private BigDecimal numericValue;
+
+  @Column(name = "boolean_value")
+  private Boolean booleanValue;
+
+  @Column(name = "string_values")
+  private List<String> stringValues; //значения показывающие ненормальное состояние//
 
   private Integer durationSec;
 

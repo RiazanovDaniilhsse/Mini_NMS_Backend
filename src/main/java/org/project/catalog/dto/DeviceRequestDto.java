@@ -19,8 +19,9 @@ public class DeviceRequestDto {
   @NotNull(message = "ID типа устройства обязателен")
   private Long deviceTypeId;
 
-  @Min(value = 1, message = "Порт должен быть от 1 до 65535")
-  @Max(value = 65535, message = "Порт должен быть от 1 до 65535")
-  private Integer port;
+  private Integer snmpPort;
+
+  private String community = "public";
+
   private Boolean enabled = true;
 }
